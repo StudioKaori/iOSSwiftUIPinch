@@ -161,6 +161,21 @@ struct ContentView: View {
                 , alignment: .bottom
             )
             
+            // MARK: - Drawer
+            .overlay(
+                HStack(spacing: 12) {
+                    // MARK: - drawer handle
+                    Image(systemName: "chevron.compact.left")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 40)
+                        .padding(8)
+                        .foregroundStyle(.secondary)
+                    
+                    // MARK: - thumbnails
+                    
+                }  //: drawer
+            )
         } //: NavigationView
         .navigationViewStyle(.stack)
         
