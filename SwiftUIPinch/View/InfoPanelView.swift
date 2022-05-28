@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InfoPanel: View {
+struct InfoPanelView: View {
     var scale: CGFloat
     var offset: CGSize
     
@@ -55,9 +55,9 @@ struct InfoPanel: View {
     }
 }
 
-struct InfoPanel_Previews: PreviewProvider {
+struct InfoPanelView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoPanel(scale: 1, offset: .zero)
+        InfoPanelView(scale: 1, offset: .zero)
             .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
             .padding()
