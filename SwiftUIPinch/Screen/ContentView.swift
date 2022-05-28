@@ -33,13 +33,13 @@ struct ContentView: View {
                     .shadow(color: .black.opacity(0.2), radius: 12, x: 2, y: 2)
                     .opacity(isAnimating ? 1 : 0)
                     .animation(.linear(duration: 1), value: isAnimating)
+                // offset modifier should come before the scale
+                    .offset(x: imageOffset.width, y: imageOffset.height)
                     .scaleEffect(imageScale)
                 // MARK: - 1.tap gesture
                 // with count 2, it'll be double tap
                 // default: single tap(You can omit count attribute)
-                    .onTapGesture(
-                    count: 2,
-                    perform: {
+                    .onTapGesture(count: 2, perform: {
                         if imageScale == 1 {
                             withAnimation(.spring()) {
                                 imageScale = 5
@@ -47,7 +47,15 @@ struct ContentView: View {
                         } else {
                             imageScale = 1
                         }
-                    }
+                    })
+                // MARK: - 2. drag gesture
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                withAnimation(.linear(duration: 1)) {
+                                    imageOffset = value.translation
+                                }
+                            }
                     )
             } //: ZStack
             .navigationTitle("Pinch & Zoom")
