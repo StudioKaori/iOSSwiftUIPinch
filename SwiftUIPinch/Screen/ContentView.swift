@@ -19,6 +19,13 @@ struct ContentView: View {
     
     // MARK: - function
     
+    func resetImageState() {
+        return withAnimation(.spring()) {
+            imageScale = 1
+            imageOffset = .zero
+        }
+    }
+    
     // MARK: - content
     
     var body: some View {
@@ -46,7 +53,7 @@ struct ContentView: View {
                                 imageScale = 5
                             }
                         } else {
-                            imageScale = 1
+                            resetImageState()
                         }
                     })
                 // MARK: - 2. drag gesture
@@ -60,10 +67,7 @@ struct ContentView: View {
                         // when you don't need to use return value, use _, it will be disposed.
                             .onEnded { _ in
                                 if imageScale <= 1 {
-                                    withAnimation(.spring()) {
-                                        imageScale = 1
-                                        imageOffset = .zero
-                                    }
+                                    resetImageState()
                                 }
                                 
                             }
