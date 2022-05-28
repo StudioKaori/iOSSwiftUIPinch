@@ -12,6 +12,10 @@ struct ContentView: View {
     
     @State private var isAnimating: Bool = false
     @State private var imageScale: CGFloat = 1
+    // CGSize contains both width and height
+    //@State private var imageOffset: CGSize = CGSize(width: 0, height: 0)
+    // CGSize(width: 0, height: 0) can be replace to .zero
+    @State private var imageOffset: CGSize = .zero
     
     // MARK: - function
     
@@ -31,6 +35,8 @@ struct ContentView: View {
                     .animation(.linear(duration: 1), value: isAnimating)
                     .scaleEffect(imageScale)
                 // MARK: - 1.tap gesture
+                // with count 2, it'll be double tap
+                // default: single tap(You can omit count attribute)
                     .onTapGesture(
                     count: 2,
                     perform: {
