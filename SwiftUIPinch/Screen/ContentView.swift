@@ -41,6 +41,7 @@ struct ContentView: View {
                 // default: single tap(You can omit count attribute)
                     .onTapGesture(count: 2, perform: {
                         if imageScale == 1 {
+                            // spring -> bounce animation
                             withAnimation(.spring()) {
                                 imageScale = 5
                             }
@@ -55,6 +56,16 @@ struct ContentView: View {
                                 withAnimation(.linear(duration: 1)) {
                                     imageOffset = value.translation
                                 }
+                            }
+                        // when you don't need to use return value, use _, it will be disposed.
+                            .onEnded { _ in
+                                if imageScale <= 1 {
+                                    withAnimation(.spring()) {
+                                        imageScale = 1
+                                        imageOffset = .zero
+                                    }
+                                }
+                                
                             }
                     )
             } //: ZStack
