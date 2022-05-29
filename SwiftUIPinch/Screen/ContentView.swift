@@ -16,7 +16,7 @@ struct ContentView: View {
     //@State private var imageOffset: CGSize = CGSize(width: 0, height: 0)
     // CGSize(width: 0, height: 0) can be replace to .zero
     @State private var imageOffset: CGSize = .zero
-    @State private var isDrawerOpen: Bool = false
+    @State private var isDrawerOpen: Bool = true
     
     let pages: [Page] = pagesData
     @State private var pageIndex: Int = 1
@@ -186,6 +186,16 @@ struct ContentView: View {
                         })
                     
                     // MARK: - thumbnails
+                    ForEach(pages) { item in
+                        Image(item.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80)
+                            .cornerRadius(8)
+                            .shadow(radius: 4)
+
+                    }
+                    
                     Spacer()
 
                     
