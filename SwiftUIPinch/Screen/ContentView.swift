@@ -16,7 +16,7 @@ struct ContentView: View {
     //@State private var imageOffset: CGSize = CGSize(width: 0, height: 0)
     // CGSize(width: 0, height: 0) can be replace to .zero
     @State private var imageOffset: CGSize = .zero
-    @State private var isDrawerOpen: Bool = true
+    @State private var isDrawerOpen: Bool = false
     
     let pages: [Page] = pagesData
     @State private var pageIndex: Int = 1
@@ -193,6 +193,12 @@ struct ContentView: View {
                             .frame(width: 80)
                             .cornerRadius(8)
                             .shadow(radius: 4)
+                            .opacity(isDrawerOpen ? 1 : 0)
+                            .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
+                            .onTapGesture(perform: {
+                                isAnimating = true
+                                pageIndex = item.id
+                            })
 
                     }
                     
