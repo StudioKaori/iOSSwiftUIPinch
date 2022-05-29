@@ -7,7 +7,7 @@
 
 import Foundation
 
-let pageData: [Page] = [
+let pagesData: [Page] = [
     Page(id: 1, imageName: "magazine-front-cover"),
     Page(id: 2, imageName: "magazin-back-cover")
 ]
