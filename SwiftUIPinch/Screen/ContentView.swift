@@ -58,6 +58,8 @@ struct ContentView: View {
                 // with count 2, it'll be double tap
                 // default: single tap(You can omit count attribute)
                     .onTapGesture(count: 2, perform: {
+                        isDrawerOpen = false
+                        
                         if imageScale == 1 {
                             // spring -> bounce animation
                             withAnimation(.spring()) {
@@ -66,6 +68,10 @@ struct ContentView: View {
                         } else {
                             resetImageState()
                         }
+                    })
+                // Double tap should come first!
+                    .onTapGesture(count:1, perform: {
+                        isDrawerOpen = false
                     })
                 // MARK: - 2. drag gesture
                     .gesture(
@@ -196,6 +202,7 @@ struct ContentView: View {
                             .opacity(isDrawerOpen ? 1 : 0)
                             .animation(.easeOut(duration: 0.5), value: isDrawerOpen)
                             .onTapGesture(perform: {
+                                resetImageState()
                                 isAnimating = true
                                 pageIndex = item.id
                             })
